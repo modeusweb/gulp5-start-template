@@ -98,10 +98,6 @@ function compileScripts() {
  * Compile and minify stylesheets (Sass or other preprocessors)
  * @returns {Stream} Gulp stream
  */
-/**
- * Compile and minify stylesheets (Sass or other preprocessors)
- * @returns {Stream} Gulp stream
- */
 function compileStyles() {
   return src([
     `src/styles/${preprocessor}/*.*`,
