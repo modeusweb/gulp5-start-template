@@ -1,6 +1,6 @@
 {
 	"name": "gulp5-start-template",
-	"version": "5.1.0",
+	"version": "1.0.0",
 	"description": "Gulp 5 Start Template",
 	"main": "index.js",
 	"author": "modeusweb",
@@ -8,7 +8,7 @@
 	"browserslist": [
 		"last 10 versions"
 	],
-	"license": "ISC",
+	"license": "",
 	"scripts": {
 		"start": "gulp"
 	},
@@ -27,14 +27,13 @@
 		"gulp-changed": "^5.0.2",
 		"gulp-concat": "^2.6.1",
 		"gulp-imagemin": "^9.1.0",
-		"gulp-noop": "^1.0.1",
 		"gulp-postcss": "^10.0.0",
 		"gulp-rsync": "0.1.0",
 		"gulp-sass": "^5.1.0",
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-util": "^3.0.8",
 		"postcss": "^8.4.47",
-		"sass": "^1.79.3",
+		"sass": "^1.79.4",
 		"terser-webpack-plugin": "^5.3.10",
 		"webpack": "^5.95.0",
 		"webpack-stream": "^7.0.0"

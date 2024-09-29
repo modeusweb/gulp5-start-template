@@ -14,7 +14,6 @@ import TerserPlugin from 'terser-webpack-plugin';
 import gulpSass from 'gulp-sass';
 import * as dartSass from 'sass';
 import sassGlob from 'gulp-sass-glob';
-import stylGlob from 'gulp-noop';
 import postCss from 'gulp-postcss';
 import cssNano from 'cssnano';
 import autoPrefixer from 'autoprefixer';
