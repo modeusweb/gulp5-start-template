@@ -6,7 +6,7 @@ import pkg from 'gulp';
 const { src, dest, parallel, series, watch } = pkg;
 
 import browserSync from 'browser-sync';
-import bssi from 'browsersync-ssi';
+import bSsi from 'browsersync-ssi';
 import ssi from 'ssi';
 import webpackStream from 'webpack-stream';
 import webpack from 'webpack';
@@ -32,7 +32,7 @@ function browserSyncInit() {
   browserSync.init({
     server: {
       baseDir: 'src/',
-      middleware: bssi({ baseDir: 'src/', ext: '.html' }),
+      middleware: bSsi({ baseDir: 'src/', ext: '.html' }),
     },
     ghostMode: { clicks: false },
     notify: false,
