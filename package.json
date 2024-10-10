@@ -13,8 +13,8 @@
 		"start": "gulp"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.25.7",
-		"@babel/preset-env": "^7.25.7",
+		"@babel/core": "^7.25.8",
+		"@babel/preset-env": "^7.25.8",
 		"autoprefixer": "^10.4.20",
 		"babel-loader": "^9.2.1",
 		"babel-plugin-module-resolver": "^5.0.2",
@@ -22,7 +22,7 @@
 		"browser-sync": "^3.0.3",
 		"browsersync-ssi": "^0.2.4",
 		"cssnano": "^7.0.6",
-		"del": "^7.1.0",
+		"del": "^8.0.0",
 		"gulp": "^5.0.0",
 		"gulp-changed": "^5.0.2",
 		"gulp-concat": "^2.6.1",
