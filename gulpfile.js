@@ -107,7 +107,14 @@ function compileStyles() {
   .pipe(
     eval(preprocessor)({
       'include css': true,
+      silent: true,
       silenceDeprecations: ['legacy-js-api'],
+      logger: {
+        warn(message) {
+          if (message.includes('import')) return;
+          console.warn(message);
+        },
+      }
     })
   )
   .pipe(
