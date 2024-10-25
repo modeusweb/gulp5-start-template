@@ -46,52 +46,52 @@ function browserSyncInit() {
  */
 function compileScripts() {
   return src(['src/js/*.js', '!src/js/*.min.js'])
-  .pipe(
-    webpackStream(
-      {
-        mode: 'production',
-        performance: { hints: false },
-        plugins: [
-          new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-          }), // jQuery (npm i jquery)
-        ],
-        module: {
-          rules: [
-            {
-              test: /\.m?js$/,
-              exclude: /(node_modules)/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: ['@babel/preset-env'],
-                  plugins: ['babel-plugin-root-import'],
+    .pipe(
+      webpackStream(
+        {
+          mode: 'production',
+          performance: { hints: false },
+          plugins: [
+            new webpack.ProvidePlugin({
+              $: 'jquery',
+              jQuery: 'jquery',
+              'window.jQuery': 'jquery',
+            }), // jQuery (npm i jquery)
+          ],
+          module: {
+            rules: [
+              {
+                test: /\.m?js$/,
+                exclude: /(node_modules)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['babel-plugin-root-import'],
+                  },
                 },
               },
-            },
-          ],
+            ],
+          },
+          optimization: {
+            minimize: true,
+            minimizer: [
+              new TerserPlugin({
+                terserOptions: { format: { comments: false } },
+                extractComments: false,
+              }),
+            ],
+          },
         },
-        optimization: {
-          minimize: true,
-          minimizer: [
-            new TerserPlugin({
-              terserOptions: { format: { comments: false } },
-              extractComments: false,
-            }),
-          ],
-        },
-      },
-      webpack,
-    ),
-  )
-  .on('error', function handleError() {
-    this.emit('end');
-  })
-  .pipe(concat('app.min.js'))
-  .pipe(dest('src/js'))
-  .pipe(browserSync.stream());
+        webpack,
+      ),
+    )
+    .on('error', function handleError() {
+      this.emit('end');
+    })
+    .pipe(concat('app.min.js'))
+    .pipe(dest('src/js'))
+    .pipe(browserSync.stream());
 }
 
 /**
@@ -103,31 +103,31 @@ function compileStyles() {
     `src/styles/${preprocessor}/*.*`,
     `!src/styles/${preprocessor}/_*.*`,
   ])
-  .pipe(eval(`${preprocessor}Glob`)())
-  .pipe(
-    eval(preprocessor)({
-      'include css': true,
-      silent: true,
-      silenceDeprecations: ['legacy-js-api'],
-      logger: {
-        warn(message) {
-          if (message.includes('import')) return;
-          console.warn(message);
+    .pipe(eval(`${preprocessor}Glob`)())
+    .pipe(
+      eval(preprocessor)({
+        'include css': true,
+        silent: true,
+        silenceDeprecations: ['legacy-js-api'],
+        logger: {
+          warn(message) {
+            if (message.includes('import')) return;
+            console.warn(message);
+          },
         },
-      }
-    })
-  )
-  .pipe(
-    postCss([
-      autoPrefixer({ grid: 'autoplace' }),
-      cssNano({
-        preset: ['default', { discardComments: { removeAll: true } }],
       }),
-    ]),
-  )
-  .pipe(concat('app.min.css'))
-  .pipe(dest('src/css'))
-  .pipe(browserSync.stream());
+    )
+    .pipe(
+      postCss([
+        autoPrefixer({ grid: 'autoplace' }),
+        cssNano({
+          preset: ['default', { discardComments: { removeAll: true } }],
+        }),
+      ]),
+    )
+    .pipe(concat('app.min.css'))
+    .pipe(dest('src/css'))
+    .pipe(browserSync.stream());
 }
 
 /**
@@ -136,10 +136,10 @@ function compileStyles() {
  */
 function optimizeImages() {
   return src(['src/images/src/**/*'], { encoding: false })
-  .pipe(changed('src/images/dist'))
-  .pipe(imageMin())
-  .pipe(dest('src/images/dist'))
-  .pipe(browserSync.stream());
+    .pipe(changed('src/images/dist'))
+    .pipe(imageMin())
+    .pipe(dest('src/images/dist'))
+    .pipe(browserSync.stream());
 }
 
 /**
@@ -199,7 +199,11 @@ function deployToServer() {
  * Watch for file changes and re-run tasks
  */
 function startWatch() {
-  watch([`src/styles/${preprocessor}/**/*`], { usePolling: true }, compileStyles);
+  watch(
+    [`src/styles/${preprocessor}/**/*`],
+    { usePolling: true },
+    compileStyles,
+  );
   watch(
     ['src/js/**/*.js', '!src/js/**/*.min.js'],
     { usePolling: true },
@@ -213,7 +217,12 @@ function startWatch() {
 }
 
 // Export tasks
-export { compileScripts as scripts, compileStyles as styles, optimizeImages as images, deployToServer as deploy };
+export {
+  compileScripts as scripts,
+  compileStyles as styles,
+  optimizeImages as images,
+  deployToServer as deploy,
+};
 export const assets = series(compileScripts, compileStyles, optimizeImages);
 export const build = series(
   cleanDist,
