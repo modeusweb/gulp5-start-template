@@ -13,8 +13,8 @@
 		"start": "gulp"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.25.9",
-		"@babel/preset-env": "^7.25.9",
+		"@babel/core": "^7.26.0",
+		"@babel/preset-env": "^7.26.0",
 		"autoprefixer": "^10.4.20",
 		"babel-loader": "^9.2.1",
 		"babel-plugin-module-resolver": "^5.0.2",
@@ -32,11 +32,11 @@
 		"gulp-sass": "^5.1.0",
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-util": "^3.0.8",
-		"postcss": "^8.4.47",
+		"postcss": "^8.4.48",
 		"prettier": "^3.3.3",
-		"sass": "^1.80.4",
+		"sass": "^1.80.6",
 		"terser-webpack-plugin": "^5.3.10",
-		"webpack": "^5.95.0",
+		"webpack": "^5.96.1",
 		"webpack-stream": "^7.0.0"
 	}
 }
